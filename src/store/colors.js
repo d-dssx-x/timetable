@@ -1,0 +1,1 @@
+export default colors = ['#30d960','#ff9c33','#72b2f3','#f7347a','#70258c','#f29e55','#fe51ff']
