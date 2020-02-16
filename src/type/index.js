@@ -14,7 +14,8 @@ export const INITIAL_STATE = {
         subject: 'Лазера',
         color: '#70258c',
         classroom: '442',
-        id: 1
+        id: 1,
+        add : true
     },
     {
         day: 'tue',
@@ -23,7 +24,8 @@ export const INITIAL_STATE = {
         subject: 'Math',
         color: '#ff9c33',
         classroom: '442',
-        id: 2
+        id: 2,
+        add : true
     },
     {
         day: 'wed',
@@ -32,6 +34,7 @@ export const INITIAL_STATE = {
         subject: 'Math',
         color: '#ff9c33',
         classroom: '442',
-        id: 3
+        id: 3,
+        add : true
     }]
 }

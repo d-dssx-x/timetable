@@ -21,7 +21,7 @@ class Edit extends React.Component {
     }
     _saveSubject = () =>{
         if(!this.props.store.add){
-            delete this.props.store.add
+            this.props.store.add = true
             this.props.addSubject(this.props.store)
         }
     }
