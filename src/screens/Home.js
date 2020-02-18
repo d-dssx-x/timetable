@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TabBarIOS} from 'react-native';
 import Day from '../components/Day';
 import {ScrollView} from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
@@ -20,17 +20,17 @@ function Home(props) {
     
     return (
       <View style={styles.container}>
-        <ScrollView>
-          {!!monday.length    && <Day store = {monday}    day = 'Monday'    add = {false} delete = {false} />}
-          {!!tuesday.length   && <Day store = {tuesday}   day = 'Tuesday'   add = {false} delete = {false} />}
-          {!!wednesday.length && <Day store = {wednesday} day = 'Wednesday' add = {false} delete = {false} />}
-          {!!thursday.length  && <Day store = {thursday}  day = 'Thursday'  add = {false} delete = {false} />}
-          {!!friday.length    && <Day store = {friday}    day = 'Friday'    add = {false} delete = {false} />}
-          {!!saturday.length  && <Day store = {saturday}  day = 'Saturday'  add = {false} delete = {false} />}
-          {!!sunday.length    && <Day store = {sunday}    day = 'Sunday'    add = {false} delete = {false} />}
+        <ScrollView style = {styles.scroll}>
+          {!!monday.length    && <Day store = {monday}    day = 'Monday'    add = {false} delete = {false} edit = {true}/>}
+          {!!tuesday.length   && <Day store = {tuesday}   day = 'Tuesday'   add = {false} delete = {false} edit = {true}/>}
+          {!!wednesday.length && <Day store = {wednesday} day = 'Wednesday' add = {false} delete = {false} edit = {true}/>}
+          {!!thursday.length  && <Day store = {thursday}  day = 'Thursday'  add = {false} delete = {false} edit = {true}/>}
+          {!!friday.length    && <Day store = {friday}    day = 'Friday'    add = {false} delete = {false} edit = {true}/>}
+          {!!saturday.length  && <Day store = {saturday}  day = 'Saturday'  add = {false} delete = {false} edit = {true}/>}
+          {!!sunday.length    && <Day store = {sunday}    day = 'Sunday'    add = {false} delete = {false} edit = {true}/>}
         </ScrollView>
-        <Button callback = {()=>{Actions.push('setting');Actions.replace('setting')}} active = {null}/>
-    </View>
+        <Button callback = {()=>{Actions.push('addDeleteHome');Actions.replace('addDeleteHome')}} active = {null}/>
+        </View>
   );
 }
 
@@ -38,6 +38,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex : 1,
+  },
+  tabBar : {
+    width : '100%',
+    height : 60,
+  },
+  button : {
+    width : 60,
+    height : 60,
+    marginLeft : 20,
+    alignItems : 'center'
   },
 });
 

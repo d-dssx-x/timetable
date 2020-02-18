@@ -42,15 +42,20 @@ export const colorChange = (value,id) => {
         id : id
     }
 }
-export const addSubject = (value) => {
-    return {
-        type : ADD_NEW_SUBJECT,
-        value : value
-    }
-}
 export const deleteSubject = (id) => {
     return {
         type : DELETE_SUBJECT,
         id : id
+    }
+}
+export const addSubject = (subject,classroom,start,finish,color,day) => {
+    return {
+        type : ADD_NEW_SUBJECT,
+        subject : subject,
+        classroom : classroom,
+        start : start,
+        finish : finish,
+        color : color,
+        day : day
     }
 }

@@ -5,11 +5,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import Button from '../components/Button';
 import {Actions} from 'react-native-router-flux'
-import { deleteSubject } from '../actions';
 
 
-
-function Setting(props) {
+const filter = (props) =>{
     const monday    = props.subjects.filter((el)=> el.day === 'mon')
     const tuesday   = props.subjects.filter((el)=> el.day === 'tue')
     const wednesday = props.subjects.filter((el)=> el.day === 'wed')
@@ -17,10 +15,16 @@ function Setting(props) {
     const friday    = props.subjects.filter((el)=> el.day === 'fri')
     const saturday  = props.subjects.filter((el)=> el.day === 'sat')
     const sunday    = props.subjects.filter((el)=> el.day === 'sun')
+    return {monday,tuesday,wednesday,thursday,friday,saturday,sunday}
+}
+
+
+function AddDeleteHome(props) {
+    let {monday,tuesday,wednesday,thursday,friday,saturday,sunday} = filter(props)
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Day store = {monday}    day = 'Monday'     delete = {true}    add = {true}/>
+          <Day store = {monday}    day = 'Monday'       delete = {true}    add = {true}/>
           <Day store = {tuesday}   day = 'Tuesday'      delete = {true}    add = {true}/>
           <Day store = {wednesday} day = 'Wednesday'    delete = {true}    add = {true}/>
           <Day store = {thursday}  day = 'Thursday'     delete = {true}    add = {true}/>
@@ -53,4 +57,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps,{deleteSubject})(Setting)
+export default connect(mapStateToProps,{})(AddDeleteHome)

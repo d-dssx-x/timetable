@@ -9,32 +9,39 @@ export const DELETE_SUBJECT = 'DELETE_SUBJECT'
 export const INITIAL_STATE = {
     subjects : [ {
         day: 'mon',
-        start: '2020-02-12T18:24:44.675Z',
-        finish: '2020-02-12T18:24:44.675Z',
+        start: '2020-01-01T21:00:00',
+        finish: '2020-01-01T21:00:00',
         subject: 'Лазера',
-        color: '#70258c',
-        classroom: '442',
+        color: '#ff9c33',
+        classroom: '',
         id: 1,
-        add : true
+    },
+    {
+        day: 'mon',
+        start: '2020-01-01T21:00:00',
+        finish: '2020-01-01T21:00:00',
+        subject: 'Лазера',
+        color: '#ff9c33',
+        classroom: '',
+        id: 2,
     },
     {
         day: 'tue',
-        start: '2020-02-12T18:24:44.675Z',
-        finish: '2020-02-12T18:24:44.675Z',
-        subject: 'Math',
+        start: '2020-01-01T21:00:00',
+        finish: '2020-01-01T21:00:00',
+        subject: 'Физра',
         color: '#ff9c33',
-        classroom: '442',
-        id: 2,
-        add : true
+        classroom: '',
+        id: 6,
     },
     {
-        day: 'wed',
-        start: '2020-02-12T18:24:44.675Z',
-        finish: '2020-02-12T18:24:44.675Z',
-        subject: 'Math',
+        day: 'tue',
+        start: '2020-01-01T21:00:00',
+        finish: '2020-01-01T21:00:00',
+        subject: 'Лазера',
         color: '#ff9c33',
-        classroom: '442',
-        id: 3,
-        add : true
-    }]
+        classroom: '',
+        id: 7,
+    },
+]
 }

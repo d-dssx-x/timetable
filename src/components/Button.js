@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   button : {
     zIndex : 1,
     position : 'absolute',
-    top : '83%',
-    left : '74%',
+    top : '75%',
+    left : '75%',
     width:50,
     height:50,
     borderRadius : 25,

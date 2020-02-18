@@ -32,7 +32,18 @@ export default (state = INITIAL_STATE, action) => {
             return newState.map(el => el.id === action.id ? Object.assign(el,{color : action.value}): el)
         }
         case ADD_NEW_SUBJECT : {
-            newState.push(action.value)
+            let start = new Date(2020, 0, 1, action.start.getHours(), action.start.getMinutes()) 
+            let finish = new Date(2020, 0, 1, action.finish.getHours(), action.finish.getMinutes())
+            let obj = {
+                subject : action.subject || '',
+                classroom : action.classroom || '',
+                start : start || '2020-01-01T21:00:00',
+                finish : finish || '2020-01-11T21:00:00',
+                id : `f${(+new Date).toString(16)}`,
+                color : action.color || '#ff9c33',
+                day : action.day || 'mon'
+            }
+            newState.push(obj)
             return newState
         }
         case DELETE_SUBJECT : {

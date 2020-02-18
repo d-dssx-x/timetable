@@ -1,11 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import formatDate from '../helper'
-import { Actions } from 'react-native-router-flux';
 
 
-export default function Add() {
+export default function PlusBtn() {
   return (
     <View style = {styles.button}>
         <Text style = {styles.text}>+</Text>
@@ -17,7 +14,7 @@ const styles = StyleSheet.create({
   button :{
     width : 40,
     height : 35,
-    marginTop : 5,
+    marginTop : '1%',
   },
   text : {
     fontSize : 40,

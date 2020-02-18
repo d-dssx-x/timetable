@@ -6,7 +6,7 @@ import Circle from '../components/Circle';
 import Form from '../components/Form';
 import colors from '../store/colors'
 import { connect } from 'react-redux';
-import {subjectChange, classroomChange, startTimeChange,finishTimeChange,dayChange,colorChange,addSubject} from '../actions'
+import {subjectChange, classroomChange, startTimeChange,finishTimeChange,dayChange,colorChange} from '../actions'
 
 class Edit extends React.Component {
     constructor(props){
@@ -19,16 +19,7 @@ class Edit extends React.Component {
             activeColor : [false,false,false,false,false,false,false]
         }
     }
-    _saveSubject = () =>{
-        if(!this.props.store.add){
-            this.props.store.add = true
-            this.props.addSubject(this.props.store)
-        }
-    }
-
-
-
-    _selectDay = (day) => { //transform string example : "monday" to index 0
+    _selectDay = (day) => { //transform string example : "monday" to index 1
         const week = {
             "Monday"    : 0,
             "Tuesday"   : 1,
@@ -87,7 +78,6 @@ class Edit extends React.Component {
     
 
     componentDidMount(){
-        this._saveSubject()
         this._selectDay(this.props.day)
         this._selectColor(this.props.store.color)
     }
@@ -166,4 +156,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default connect(null,{subjectChange, classroomChange, startTimeChange,finishTimeChange,dayChange,colorChange,addSubject})(Edit)
+export default connect(null,{subjectChange, classroomChange, startTimeChange,finishTimeChange,dayChange,colorChange})(Edit)

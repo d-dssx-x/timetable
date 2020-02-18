@@ -1,8 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import formatDate from '../helper'
-import { Actions } from 'react-native-router-flux';
 
 
 export default function Delete() {
@@ -19,7 +16,7 @@ const styles = StyleSheet.create({
     height : 35,
   },
   text : {
-    fontSize : 50,
+    fontSize : 45,
     fontWeight : '400',
     color : '#ff2121',
   },

@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 import Home from '../screens/Home';
 import Edit from '../screens/Edit';
-import Setting from '../screens/Setting'
+import Add from '../screens/Add';
+import AddDeleteHome from '../screens/AddDeleteHome';
 
 
 export default function Routers() {
@@ -13,17 +14,22 @@ export default function Routers() {
         <Scene key = 'home'
         component = {Home}
         title = ''
+        renderBackButton={() =>{null}}
+        renderLeftButton={()=>{null}} 
         init/>
         <Scene key = 'edit'
         component = {Edit}
         title = 'Edit'/>
-        <Scene key = 'setting'
-        component = {Setting}
+        <Scene key = 'addDeleteHome'
+        component = {AddDeleteHome}
         title = ''
         navigationBarStyle = {styles.bar}
         titleStyle = {styles.title}
         renderBackButton={() =>{null}}
         renderLeftButton={()=>{null}} />
+        <Scene key = 'add'
+        component = {Add}
+        title = "Add"/>
     </Scene>
   </Router>
   );
