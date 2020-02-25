@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
         }
         case ADD_NEW_SUBJECT : {
             let obj = {
-                name : action.subject || '',
+                name : action.name || '',
                 classroom : action.classroom || '',
                 start : action.start || '2020-01-01T21:00:00',
                 finish : action.finish || '2020-01-01T21:00:00',
