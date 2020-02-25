@@ -1,20 +1,22 @@
+//render + and - buttons to delete subject from timetable
+
 import React from 'react';
 import { StyleSheet, Text, View, Settings } from 'react-native';
-import Day from '../components/Day';
+import Day from '../../components/Day';
 import {ScrollView} from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import {Actions} from 'react-native-router-flux'
 
 
 const filter = (props) =>{
-    const monday    = props.subjects.filter((el)=> el.day === 'mon')
-    const tuesday   = props.subjects.filter((el)=> el.day === 'tue')
-    const wednesday = props.subjects.filter((el)=> el.day === 'wed')
-    const thursday  = props.subjects.filter((el)=> el.day === 'thu')
-    const friday    = props.subjects.filter((el)=> el.day === 'fri')
-    const saturday  = props.subjects.filter((el)=> el.day === 'sat')
-    const sunday    = props.subjects.filter((el)=> el.day === 'sun')
+    const monday    = props.timetable.filter((el)=> el.day === 'mon')
+    const tuesday   = props.timetable.filter((el)=> el.day === 'tue')
+    const wednesday = props.timetable.filter((el)=> el.day === 'wed')
+    const thursday  = props.timetable.filter((el)=> el.day === 'thu')
+    const friday    = props.timetable.filter((el)=> el.day === 'fri')
+    const saturday  = props.timetable.filter((el)=> el.day === 'sat')
+    const sunday    = props.timetable.filter((el)=> el.day === 'sun')
     return {monday,tuesday,wednesday,thursday,friday,saturday,sunday}
 }
 
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        subjects : state.subjects
+        timetable : state.timetable
     }
 }
 

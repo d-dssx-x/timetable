@@ -1,22 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, ShadowPropTypesIOS } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View} from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
 
-export default function Form(props) {
+export default function PseudoForm(props) {
   const value = props.value || ''
   return (
     <View>
         <View style = {styles.textWrap}>
             <Text style = {styles.text}>{props.text}</Text>
         </View>
-        <View style = {styles.wrapper}>
-            <TextInput style = {styles.row} keyboardType = {props.type} value = {value} onChangeText = {(value)=>{props.setText(props.id,value)}}
-              onSubmitEditing = {()=>{props.onSubmitEditing()}}
-              autoFocus = {props.autoFocus}
-            />
-        </View>
+        <TouchableWithoutFeedback style = {styles.wrapper} onPress = {()=>{props.press()}}>
+            <View style = {styles.row} >
+                <Text style = {styles.textForm}>{value}</Text>
+            </View>
+        </TouchableWithoutFeedback>
     </View>
   );
 }
@@ -44,10 +43,13 @@ const styles = StyleSheet.create({
     width : '90%',
     marginLeft : '5%',
     height : 50,
-    fontSize : 20,
-    fontWeight : '300',
     borderBottomWidth : 1,
     borderColor : '#e6e6e6',
+    justifyContent : 'center'
+  },
+  textForm : {
+    fontSize : 20,
+    fontWeight : '300',
   }
   
 });

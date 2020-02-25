@@ -16,7 +16,6 @@ class Subject extends React.Component {
         day : this.props.day,
         store : this.props.store
       },
-      time : new Date()
     }
   }
   _chooseModePress = () => {
@@ -53,33 +52,12 @@ class Subject extends React.Component {
     if(text !== '') flag = true
     return  flag
   }
-  _showOnline = (start,finish,day) =>{
-    const week = {
-      "Monday"    : 1,
-      "Tuesday"   : 2,
-      "Wednesday" : 3,
-      "Thursday"  : 4,
-      "Friday"    : 5,
-      "Saturday"  : 6,
-      "Sunday"    : 0
-    }
-    let nowCorrect = new Date(2020,0,1,new Date().getHours(),new Date().getMinutes())
-    let correct = new Date()
-    return (correct.getDay() == week[day] && nowCorrect>start && nowCorrect<finish)
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.setState({ time: Date.now() }), 30000);//
-  }
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
   render(){
     return (
         <TouchableOpacity style = {styles.wrapper} onPress = {this._chooseModePress}>
           <View style = {styles.row}>
-            {this.props.add && <PlusBtn />}
-            {this.props.delete && <DeleteBtn />}
+            {this.props.add && <PlusBtn size = {{width : 40,height : 35}} font = {{fontSize : 40}}/>}
+            {this.props.delete && <DeleteBtn size = {{width : 37,height : 35}} font = {{fontSize : 45}}/>}
             {(!this.props.add && !this.props.delete)  && <View style = {styles.time}>
                 <View>
                     <Text style = {styles.timeText}>{formatDate(this.props.store.start)}</Text>
@@ -90,10 +68,9 @@ class Subject extends React.Component {
             </View>}
             <View style = {[styles.colorBorder,{ borderColor : this.props.store.color}]}></View>
             <View style = {styles.subject}>
-                <Text style = {styles.subjectText}>{this.props.store.subject}</Text>
+                <Text style = {styles.subjectText}>{this.props.store.name}</Text>
                 {this._showText(this.props.store.classroom) && <Text style = {styles.classroom}>{this.props.store.classroom}</Text>}
             </View>
-            {this._showOnline(this.props.store.start,this.props.store.finish,this.props.day) && <View style = {styles.circle} />}
           </View>
       </TouchableOpacity>
     );
@@ -102,7 +79,7 @@ class Subject extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      subjects : state.subjects
+      timetable : state.timetable
   }
 }
 
@@ -134,12 +111,13 @@ const styles = StyleSheet.create({
   time : {
       justifyContent : 'center',
       width : '11%',
-      marginTop : '1%'
+      marginTop : '1%',
   },
   timeText : {
     fontSize : 14,
     marginBottom : 5,
     fontWeight : '300',
+    textAlign : 'center'
   },
   colorBorder : {
     marginTop : 5,
@@ -150,23 +128,15 @@ const styles = StyleSheet.create({
   },
   subject : {
     justifyContent : 'center',
-    width : '69%',
+    width : '80%',
   },
   subjectText : {
        fontSize : 20,
-       fontWeight : '300'
+       fontWeight : '200'
   },
   classroom : {
     fontSize : 12,
     marginTop : 5,
     fontWeight : '200'
   },
-  circle : {
-    width : 20,
-    height : 20,
-    backgroundColor : '#85ff85',
-    borderRadius : 10,
-    marginTop : 20,
-    marginLeft : 10
-  }
 });

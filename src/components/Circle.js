@@ -5,7 +5,7 @@ import { TouchableOpacity} from 'react-native-gesture-handler';
 
 
 export default function Edit(props) {
-    let stlC = [styles.circle,{backgroundColor:props.color}]
+    let stlC = [styles.circle,{backgroundColor:props.color||'#fff'}]
     let stlT = [styles.text]
     if(props.active && props.type === 'DAY'){
         stlC.push({backgroundColor : '#454545'})

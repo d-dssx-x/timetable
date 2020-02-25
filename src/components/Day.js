@@ -33,6 +33,7 @@ export default function Day(props) {
     );
 }
 
+
 const styles = StyleSheet.create({
   date : {
     width : '100%',

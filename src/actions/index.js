@@ -1,4 +1,5 @@
-import {CHANGE_SUBJECT, CHANGE_CLASSROOM, CHANGE_FINISH_TIME, CHANGE_DAY, CHANGE_START_TIME, CHANGE_COLOR, ADD_NEW_SUBJECT, DELETE_SUBJECT} from '../type'
+import {CHANGE_SUBJECT, CHANGE_CLASSROOM, CHANGE_FINISH_TIME, CHANGE_DAY, CHANGE_START_TIME, CHANGE_COLOR, ADD_NEW_SUBJECT, DELETE_SUBJECT, SAVE_NAME_SUBJECT, DELETE_NAME_SUBJECT, SAVE_TIME_PATTEN} from '../type'
+
 
 export const subjectChange = (value,id) =>{
     return {
@@ -48,14 +49,33 @@ export const deleteSubject = (id) => {
         id : id
     }
 }
-export const addSubject = (subject,classroom,start,finish,color,day) => {
+export const addSubject = (name,classroom,start,finish,color,day) => {
     return {
         type : ADD_NEW_SUBJECT,
-        subject : subject,
+        name : name,
         classroom : classroom,
         start : start,
         finish : finish,
         color : color,
         day : day
+    }
+}
+export const saveNameSubject = (value) => {
+    return {
+        type : SAVE_NAME_SUBJECT,
+        value : value
+    }
+}
+export const deleteNameSubject = (index) => {
+    return {
+        type : DELETE_NAME_SUBJECT,
+        index : index
+    }
+}
+export const saveTimePattern = (start,finish) => {
+    return {
+        type : SAVE_TIME_PATTEN,
+        start : start,
+        finish : finish
     }
 }

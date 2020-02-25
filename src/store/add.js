@@ -2,7 +2,7 @@ export const ADD_SUBJECT = {
     day: '',
     start: '',
     finish: '',
-    subject: 'Add subject',
+    name: 'Add subject',
     color: '#fff',
     classroom: '',
     id: null
