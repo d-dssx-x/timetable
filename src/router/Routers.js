@@ -1,19 +1,21 @@
 //Router between screens
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import { Router, Scene ,Actions } from 'react-native-router-flux';
+import { Icon} from 'react-native-elements'
 /*Home */
 import Home from '../screens/Home/'
 import Edit from '../screens/Home/Edit';
 import Add from '../screens/Home/Add';
-import AddDeleteHome from '../screens/Home/AddDeleteHome';
 /*Settings */
 import Settings from '../screens/Settings/'
 /*Tasks */
 import Tasks from '../screens/Tasks/'
+import DetailsTask from '../screens/Tasks/Details'
 /*Subjects Info*/
 import InfoSubject from '../screens/Info/';
 import Add_Subjects from '../screens/Info/Add'
+import Details from '../screens/Info/Details';
 
 
 export default function Routers() {
@@ -26,17 +28,10 @@ export default function Routers() {
           title = ''
           renderBackButton={() =>{null}}
           renderLeftButton={()=>{null}} 
-          init
         />
         <Scene key = 'edit'
           component = {Edit}
           title = 'Edit'/>
-        <Scene key = 'addDeleteHome'
-          component = {AddDeleteHome}
-          title = ''
-          renderBackButton={() =>{null}}
-          renderLeftButton={()=>{null}} 
-          />
         <Scene key = 'add'
           component = {Add}
           title = "Add"/>
@@ -56,6 +51,10 @@ export default function Routers() {
           renderBackButton={() =>{null}}
           renderLeftButton={()=>{null}} 
         />
+        <Scene key = 'details_task'
+          component = {DetailsTask}
+          title = ''
+        />
 
         {/*INFO SUBJECT SCREEN */}
         <Scene key = 'info'
@@ -68,10 +67,27 @@ export default function Routers() {
           component = {Add_Subjects}
           title = 'Add'
         />
+        <Scene key = 'details'
+          component = {Details}
+          renderRightButton = {EditTitleRightBtn}
+        />
     </Scene>
   </Router>
   );
 }
+
+const EditTitleRightBtn = () =>{
+  return(
+    <View style = {styles.button}>
+      <Icon
+        size = {25}
+        name = 'create'
+        iconStyle = {styles.item}
+    />
+    </View>
+  )
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -80,4 +96,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  button : {
+    marginRight : 15
+  },
+  item : {
+    color : '#347deb'
+  }
 });

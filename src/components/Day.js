@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Subject from './Subject';
 import { ADD_SUBJECT } from '../store/add';
 
-const day = (day) =>{
+const days = (day) =>{
   const week = {
     "Monday"    : 1,
     "Tuesday"   : 2,
@@ -15,20 +15,24 @@ const day = (day) =>{
   }
   return week[day]
 }
-
-export default function Day(props) {
-    let subjects = props.store.map((el,i)=><Subject store = {el} day = {props.day} delete = {props.delete} add = {false} key = {i} edit = {props.edit}/>)
-    let stl = styles.dateText
-    if(new Date().getDay()  === day(props.day)){  
+const selectActiveDay = (day) => {
+  let stl = styles.dateText
+    if(new Date().getDay()  === days(day)){  
        stl = [styles.dateText,styles.active]
     }
+    return stl
+}
+
+export default function Day(props) {
     return (
         <View>
             <View style = {styles.date}>
-                <Text style = {stl}>{props.day}</Text>
+                <Text style = {selectActiveDay(props.day)}>{props.day}</Text>
             </View>
-            {subjects}
-            {props.add && <Subject store = {ADD_SUBJECT} day = {props.day} delete = {false} add = {true} edit = {false}/>}
+            {props.store.map((el,i)=>{
+              return <Subject store = {el} day = {props.day} key = {i} edit = {props.edit}/>
+            })}
+            {!props.edit && <Subject store = {ADD_SUBJECT} day = {props.day} add = {true}/>}
         </View>
     );
 }

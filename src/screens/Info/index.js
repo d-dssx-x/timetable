@@ -2,12 +2,13 @@ import React from 'react';
 import { StyleSheet, View , Text} from 'react-native';
 import { connect } from 'react-redux';
 import {ScrollView} from 'react-native-gesture-handler';
-import SwitchButton from '../../components/SwitchButton'
 import Swiper from 'react-native-swiper';
 import Button from '../../components/Button'
 import TabBar from '../../components/TabBar'
 import AddButton from '../../components/InfoSubjects/AddButton';
 import SubjectInfo from '../../components/InfoSubjects/SubjectInfo';
+import { Actions } from 'react-native-router-flux';
+import ToggleBtn from '../../components/ToggleBtn';
 
 
 class InfoSubject extends React.Component {
@@ -26,16 +27,17 @@ class InfoSubject extends React.Component {
   switchButton = (id) => {
     let arr = this.state.active.map(el => el !== null ? null : null)
     arr[id] = styles.active
-    this.setState({active:arr,index : id})
+    this.setState({active:arr,index : id,edit : false})
   }
   touchButton = (id) => {
       this.refs.swiper.scrollBy(id-this.state.index, true)
       this.switchButton(id)
   }
   filterTypeSubjects = () => {
-      this.setState({subject : this.props.subjects})
-      this.setState({subjectExam : this.props.subjects.filter(el => el.type === 'exam')})
-      this.setState({subjectCredit : this.props.subjects.filter(el => el.type === 'credit')})
+    const subjectExam = this.props.subjects.filter(el => el.type === 'exam')
+    const subjectCredit = this.props.subjects.filter(el => el.type === 'credit')
+    this.setState({subjectExam : subjectExam,subjectCredit : subjectCredit})
+    
   }
   componentDidMount(){
     this.filterTypeSubjects()
@@ -44,13 +46,15 @@ class InfoSubject extends React.Component {
     let {active,subject,subjectExam,subjectCredit,edit} = this.state
     return (
       <View style={styles.container}>
-        <SwitchButton press = {this.touchButton} active = {active}/>
+        <ToggleBtn press = {this.touchButton} active = {active} 
+          name = {['All','Exam','Credit']}
+        />
           <Swiper ref = 'swiper' showsButtons = {true}  showsPagination = {false} onMomentumScrollEnd={(e, state, context) => {this.switchButton(state.index)}} loop ={false}>
             <ScrollView>
               {subject.map((el,i) =>{
                 return <SubjectInfo name = {el.name} key = {i} tasks = {this.props.tasks} edit = {edit}/>
               })}
-            {edit && <AddButton />}
+            {edit && <AddButton press = {()=>Actions.push('add_info')}/>}
             </ScrollView>
             <ScrollView>
               {subjectExam.map((el,i) =>{
@@ -63,7 +67,8 @@ class InfoSubject extends React.Component {
               })}
             </ScrollView>
           </Swiper>
-          <Button callback = {()=>{this.setState({edit : !this.state.edit})}}/>
+          <Button callback = {()=>{
+            this.setState({edit : !this.state.edit})}}/>
         <TabBar id = {this.props.id || 1}/>
       </View>
     );

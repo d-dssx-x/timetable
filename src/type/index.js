@@ -9,6 +9,12 @@ export const DELETE_SUBJECT = 'DELETE_SUBJECT'
 export const SAVE_NAME_SUBJECT = 'SAVE_NAME_SUBJECT'
 export const DELETE_NAME_SUBJECT = 'DELETE_NAME_SUBJECT'
 export const SAVE_TIME_PATTEN = 'SAVE_TIME_PATTERN'
+export const CHANGE_DONE_TASK = 'CHANGE_DONE_TASK'
+export const CHANGE_NAME_TASK = 'CHANGE_NAME_TASK'
+export const CHANGE_NOTE_TASK = 'CHANGE_NOTE_TASK'
+export const CHANGE_SUBJECT_TASK = 'CHANGE_SUBJECT_TASK'
+export const CHANGE_COLOR_TASK = 'CHANGE_COLOR_TASK'
+export const CHANGE_FINISH_TIME_TASK = 'CHANGE_FINISH_TIME_TASK'
 export const INITIAL_STATE = {
     timetable : [ {
         day: 'mon',
@@ -59,33 +65,58 @@ export const INITIAL_STATE = {
     }],
     tasks : [{
         name : 'Реферат',
-        finish : '',
+        finish : '2020-01-01T21:00:00',
         subject : 'Лазера',
-        color : '#30d960', 
+        color : '#30d960',
+        done : false,
+        id : 1,
+        note : 'safasfas'
     },{
         name : 'Реферат',
-        finish : '',
+        finish : '2020-01-01T21:00:00',
         subject : 'Лазера',
         color : '#ff9c33', 
+        done : true,
+        id : 2,
+        note : 'safasfas'
     },
     {
         name : 'Реферат',
-        finish : '',
-        subject : 'Лазера',
+        finish : '2020-01-01T21:00:00',
+        subject : 'Тык',
         color : '#70258c', 
+        done : false,
+        id : 3,
+        note : 'safasfas'
+
     },
     {
         name : 'Реферат',
-        finish : '',
+        finish : '2020-01-01T21:00:00',
         subject : 'Лазера',
         color : '#000', 
+        done : false,
+        id : 4
     },
     {
         name : 'Реферат',
-        finish : '',
+        finish : '2020-01-01T21:00:00',
         subject : 'Физра',
         color : '#f29e55', 
+        done : false ,
+        id : 5,
+        note : 'safasfas'
     },
+    {
+        name : 'Реферат',
+        finish : '2020-01-01T21:00:00',
+        subject : 'Физра',
+        color : '#f29e55', 
+        done : true ,
+        id : 6,
+        note : 'safasfas'
+    },
+    
 
 ]
 }

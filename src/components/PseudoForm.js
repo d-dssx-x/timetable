@@ -2,18 +2,18 @@ import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-
+const placeholder = (value) => {
+  return value === 'Subject' ? styles.placeholder : styles.textForm
+}
 
 export default function PseudoForm(props) {
-  const value = props.value || ''
+  const value = props.value || 'Subject'
+
   return (
-    <View>
-        <View style = {styles.textWrap}>
-            <Text style = {styles.text}>{props.text}</Text>
-        </View>
+    <View style = {styles.container}>
         <TouchableWithoutFeedback style = {styles.wrapper} onPress = {()=>{props.press()}}>
-            <View style = {styles.row} >
-                <Text style = {styles.textForm}>{value}</Text>
+            <View style = {styles.row}>
+                <Text style = {placeholder(value)}>{value}</Text>
             </View>
         </TouchableWithoutFeedback>
     </View>
@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
   textForm : {
     fontSize : 20,
     fontWeight : '300',
+  },
+  placeholder : {
+    fontSize : 20,
+    fontWeight : '300',
+    color : '#c9c9c9'
   }
-  
 });

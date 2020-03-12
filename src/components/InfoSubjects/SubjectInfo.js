@@ -2,21 +2,50 @@ import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DeleteBtn from '../DeleteBtn'
+import { Actions } from 'react-native-router-flux';
+import { Icon } from 'react-native-elements';
 
+
+const chooseModePress = (edit,props) => {
+  if(!edit){
+    const PARAM = {
+      name : props.name,
+      title : props.name,
+      id : 2,
+      tabBarMiddle : true,
+      filterSubject : true
+    }
+    Actions.tasks(PARAM)
+    Actions.replace('tasks')
+  }else{
+    const PARAM = {
+      title : props.name,
+      id : 2,
+      ...props
+    }
+    Actions.add_info(PARAM)
+  }
+}
 
 const SubjectInfo = (props) => {
-  const filterTasks = props.tasks.filter(el => el.subject === props.name)
+  const filterTasks = props.tasks.filter(el => el.subject === props.name && el.done != true)
+  console.log(filterTasks)
   return(
-    <TouchableOpacity style = {styles.wrapper}>
+    <TouchableOpacity style = {styles.wrapper} onPress = {()=>chooseModePress(props.edit,props)}>
       <View style = {styles.row}>
-        {(props.edit || false) && <DeleteBtn size = {{width : 30,height : 30}} font = {{fontSize : 40}}/>}
+        {props.edit  && 
+          <Icon size = {20}
+                name = 'edit'
+                iconStyle = {styles.edit}
+                color  = '#3489eb'
+          />}
         <View style = {styles.left}>
           <Text style = {styles.text}>{props.name}</Text>
         </View>
         <View style = {styles.right}>
           {filterTasks.length > 3 && 
             <View style = {styles.task}>
-              <Text style = {styles.taskText}>+{props.tasks.length - 3}</Text>
+              <Text style = {styles.taskText}>+{filterTasks.length - 3}</Text>
             </View>
           }
           {filterTasks.splice(0,3).map((el,i) => <Circle color = {el.color} key = {i}/>)}
@@ -92,6 +121,11 @@ const styles = StyleSheet.create({
   active : {
     backgroundColor : '#fff'
   },
+  edit : {
+    height : 50,
+    width : 30,
+    marginTop : 17.5
+  }
 });
 
 export default SubjectInfo

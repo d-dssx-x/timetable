@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Keyboard } from 'react-native';
 import {TouchableWithoutFeedback, ScrollView} from 'react-native-gesture-handler';
-import DatePicker from '../../components/TimePicker';
+import TimePicker from '../../components/TimePicker';
 import Form from '../../components/Form';
 import colors from '../../store/colors'
 import { connect } from 'react-redux';
@@ -105,13 +105,15 @@ class Edit extends React.Component {
                         <PseudoForm text = {'Subject'} value = {this.state.value[0]} press = {this._showSearch}/>
                         <Form text = {'Classroom'} type = {'numeric'} id = {1} value = {this.state.value[1]} setText = {this._setText}
                             onSubmitEditing = {()=>{}}/>
-                        <DatePicker text = {'Start'}  time = {this.state.time[0]} id = {0} active = {this.state.activeDatePicker[0]}
+                        <TimePicker text = {'Start'}  time = {this.state.time[0]} id = {0} active = {this.state.activeDatePicker[0]}
                             press = {this._activeDatePicker}
                             setTime = {this._setTime}
+                            mode = 'time'
                             />
-                        <DatePicker text = {'Finish'} time = {this.state.time[1]} id = {1} active = {this.state.activeDatePicker[1]} 
+                        <TimePicker text = {'Finish'} time = {this.state.time[1]} id = {1} active = {this.state.activeDatePicker[1]} 
                             press = {this._activeDatePicker}
                             setTime = {this._setTime}
+                            mode = 'time'
                             />
                         <CircleRow text = {['Mon','Tue','Wed','Thu','Fri','Sat','Sun']} type = {'DAY'} active = {this.state.active} press = {this._saveDay} color = {[]}/>
                         <CircleRow text = {[]} type = {'COLOR'} active = {this.state.activeColor} press = {this._saveColor} color = {colors}/>

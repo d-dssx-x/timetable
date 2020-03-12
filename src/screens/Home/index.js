@@ -1,10 +1,9 @@
-import React from 'react';
-import { StyleSheet,View} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet,View ,Text} from 'react-native';
 import Day from '../../components/Day';
 import {ScrollView} from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import Button from '../../components/Button';
-import { Actions} from 'react-native-router-flux';
 import TabBar from '../../components/TabBar';
 
 const filter = (props) => {
@@ -19,22 +18,22 @@ const filter = (props) => {
 }
 
 
-
 function Home(props) {
     let {monday,tuesday,wednesday,thursday,friday,saturday,sunday} = filter(props)
+    let [edit,setEdit] = useState(true)
     return (
       <View style={styles.container}>
         <ScrollView style = {styles.scroll}>
-          {!!monday.length    && <Day store = {monday}    day = 'Monday'    add = {false} delete = {false} edit = {true}/>}
-          {!!tuesday.length   && <Day store = {tuesday}   day = 'Tuesday'   add = {false} delete = {false} edit = {true}/>}
-          {!!wednesday.length && <Day store = {wednesday} day = 'Wednesday' add = {false} delete = {false} edit = {true}/>}
-          {!!thursday.length  && <Day store = {thursday}  day = 'Thursday'  add = {false} delete = {false} edit = {true}/>}
-          {!!friday.length    && <Day store = {friday}    day = 'Friday'    add = {false} delete = {false} edit = {true}/>}
-          {!!saturday.length  && <Day store = {saturday}  day = 'Saturday'  add = {false} delete = {false} edit = {true}/>}
-          {!!sunday.length    && <Day store = {sunday}    day = 'Sunday'    add = {false} delete = {false} edit = {true}/>}
+          {(!!monday.length    || !edit) && <Day store = {monday}    day = 'Monday'    edit = {edit}/>}
+          {(!!tuesday.length   || !edit) && <Day store = {tuesday}   day = 'Tuesday'   edit = {edit}/>}
+          {(!!wednesday.length || !edit) && <Day store = {wednesday} day = 'Wednesday' edit = {edit}/>}
+          {(!!thursday.length  || !edit) && <Day store = {thursday}  day = 'Thursday'  edit = {edit}/>}
+          {(!!friday.length    || !edit) && <Day store = {friday}    day = 'Friday'    edit = {edit}/>}
+          {(!!saturday.length  || !edit) && <Day store = {saturday}  day = 'Saturday'  edit = {edit}/>}
+          {(!!sunday.length    || !edit) && <Day store = {sunday}    day = 'Sunday'    edit = {edit}/>}
           <View style = {styles.empty}></View>
         </ScrollView>
-        <Button callback = {()=>{Actions.push('addDeleteHome');Actions.replace('addDeleteHome')}} active = {null}/>
+        <Button callback = {()=>{setEdit(!edit)}}/>
         <TabBar id = {props.id || 0}/>
         </View>
   );

@@ -19,15 +19,18 @@ class TabBar extends React.Component {
         this.setState({color : arr})
     }
     goToTimetable = () => {
+        Actions.reset()
         Actions.home({id : 0})
         Actions.replace('home')
 
     }
     goToInfo = () => {
+        Actions.reset()
         Actions.info({id : 1})
         Actions.replace('info')
     }
     goToTasks = () => {
+        Actions.reset()
         Actions.tasks({id : 2})
         Actions.replace('tasks')
     }
@@ -37,7 +40,9 @@ class TabBar extends React.Component {
     }
     selectButton = () => {
         let arr = this.state.color.map( el=> el = '#cfcfcf')
-        arr[this.props.id] = '#000'
+        this.props.middle === true ? arr[this.props.id] = '#707070' : arr[this.props.id] = '#000'
+        
+        
         this.setState({color : arr})
     }
     componentDidMount(){

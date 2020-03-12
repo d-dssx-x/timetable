@@ -6,7 +6,7 @@ import PlusBtn from '../PlusBtn'
 
 const AddButton = (props) => {
   return(
-    <TouchableOpacity style = {styles.wrapper}>
+    <TouchableOpacity style = {styles.wrapper} onPress = {props.press}>
       <View style = {styles.row}>
         <PlusBtn size = {{width : 30,height : 30}} font = {{fontSize : 35}}/>
         <View style = {styles.left}>

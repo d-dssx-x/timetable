@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View ,Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {formatDate} from '../helper'
+import {formatTime} from '../helper'
 import { Actions } from 'react-native-router-flux';
 import DeleteBtn from './DeleteBtn';
 import { deleteSubject } from '../actions';
@@ -15,11 +15,12 @@ class Subject extends React.Component {
       PARAM : {
         day : this.props.day,
         store : this.props.store
+     
       },
     }
   }
-  _chooseModePress = () => {
-    if(this.props.delete){
+  _chooseModePress = (edit,add) => {
+    if(!edit && !add){
       Alert.alert(
         'Delete',
         'Are you sure you want to delete?',
@@ -38,11 +39,11 @@ class Subject extends React.Component {
         ],
       );
     }
-    if(this.props.add){
+    if(add){
       let PARAM  = {day : this.props.day}
       return Actions.add(PARAM)
     }
-    if(this.props.edit){
+    if(edit){
       return Actions.edit(this.state.PARAM)
     }
     
@@ -54,16 +55,16 @@ class Subject extends React.Component {
   }
   render(){
     return (
-        <TouchableOpacity style = {styles.wrapper} onPress = {this._chooseModePress}>
+        <TouchableOpacity style = {styles.wrapper} onPress = {()=>{this._chooseModePress(this.props.edit,this.props.add)}}>
           <View style = {styles.row}>
             {this.props.add && <PlusBtn size = {{width : 40,height : 35}} font = {{fontSize : 40}}/>}
-            {this.props.delete && <DeleteBtn size = {{width : 37,height : 35}} font = {{fontSize : 45}}/>}
-            {(!this.props.add && !this.props.delete)  && <View style = {styles.time}>
+            {(!this.props.edit && !this.props.add)  && <DeleteBtn size = {{width : 37,height : 35}} font = {{fontSize : 45}}/>}
+            {(!this.props.add && this.props.edit)  && <View style = {styles.time}>
                 <View>
-                    <Text style = {styles.timeText}>{formatDate(this.props.store.start)}</Text>
+                    <Text style = {styles.timeText}>{formatTime(this.props.store.start)}</Text>
                 </View>
                 <View>
-                    <Text style = {styles.timeText}>{formatDate(this.props.store.finish)}</Text>
+                    <Text style = {styles.timeText}>{formatTime(this.props.store.finish)}</Text>
                 </View>
             </View>}
             <View style = {[styles.colorBorder,{ borderColor : this.props.store.color}]}></View>
